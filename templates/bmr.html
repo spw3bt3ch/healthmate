@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Basal Metabolic Rate (BMR)</h2>
+<form method="POST" class="row g-3">
+  <div class="col-md-3">
+    <label class="form-label">Gender</label>
+    <select name="gender" class="form-select">
+      <option value="M">Male</option>
+      <option value="F" selected>Female</option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Weight (kg)</label>
+    <input type="number" name="weight" step="0.1" class="form-control" required>
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Height (cm)</label>
+    <input type="number" name="height" step="1" class="form-control" required>
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Age (years)</label>
+    <input type="number" name="age" step="1" class="form-control" required>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Calculate</button>
+  </div>
+</form>
+
+{% if result %}
+<div class="alert mt-4 alert-info">
+  <h4 class="alert-heading">Your BMR: {{ result.value }} {{ result.category }}</h4>
+  <p>{{ result.message }}</p>
+</div>
+{% endif %}
+{% endblock %}

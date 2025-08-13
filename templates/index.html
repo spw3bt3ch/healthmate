@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-4 p-md-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">Welcome to HealthMate 🩺</h1>
+    <p class="col-md-8 fs-5">
+      Your simple, privacy-friendly health companion. Run quick checks: BMI, WHR, BMR, Stroke Risk, and Arthritis likelihood.
+    </p>
+    <a class="btn btn-primary btn-lg" href="{{ url_for('bmi_route') }}">Start with BMI</a>
+  </div>
+</div>
+<div class="row g-3">
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">BMI</h5>
+        <p class="card-text">Body Mass Index using WHO categories.</p>
+        <a href="{{ url_for('bmi_route') }}" class="btn btn-outline-primary">Calculate</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">WHR</h5>
+        <p class="card-text">Waist-to-Hip Ratio for central obesity risk.</p>
+        <a href="{{ url_for('whr_route') }}" class="btn btn-outline-primary">Calculate</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">BMR</h5>
+        <p class="card-text">Basal Metabolic Rate (Mifflin-St Jeor).</p>
+        <a href="{{ url_for('bmr_route') }}" class="btn btn-outline-primary">Calculate</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row g-3 mt-1">
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Stroke Risk</h5>
+        <p class="card-text">Simplified awareness score from common risk factors.</p>
+        <a href="{{ url_for('stroke_route') }}" class="btn btn-outline-primary">Check</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">Arthritis</h5>
+        <p class="card-text">Quick symptom-based screening (not diagnostic).</p>
+        <a href="{{ url_for('arthritis_route') }}" class="btn btn-outline-primary">Check</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

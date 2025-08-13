@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Arthritis Status Checker</h2>
+<form method="POST" class="row g-3">
+  <div class="col-12">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="joint_pain" id="joint_pain">
+      <label class="form-check-label" for="joint_pain">Joint pain</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="morning_stiffness" id="morning_stiffness">
+      <label class="form-check-label" for="morning_stiffness">Morning stiffness &gt; 30 min</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="swelling" id="swelling">
+      <label class="form-check-label" for="swelling">Swelling in joints</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="family_history" id="family_history">
+      <label class="form-check-label" for="family_history">Family history of arthritis</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="difficulty_moving" id="difficulty_moving">
+      <label class="form-check-label" for="difficulty_moving">Difficulty moving joints</label>
+    </div>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Check</button>
+  </div>
+</form>
+
+{% if result %}
+<div class="alert mt-4 {{ 'alert-success' if result.category=='Low likelihood' else ('alert-warning' if result.category=='Possible arthritis' else 'alert-danger') }}">
+  <h4 class="alert-heading">Score: {{ result.value }} — {{ result.category }}</h4>
+  <p>{{ result.message }}</p>
+  <small class="text-muted">Note: This screening tool is not a diagnosis. Please talk to a healthcare professional.</small>
+</div>
+{% endif %}
+{% endblock %}

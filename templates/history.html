@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>History</h2>
+{% if records %}
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Test</th>
+          <th>Value</th>
+          <th>Category</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in records %}
+        <tr>
+          <td>{{ r.date.strftime('%Y-%m-%d %H:%M') }}</td>
+          <td>{{ r.test }}</td>
+          <td>{{ r.value }}</td>
+          <td>{{ r.category }}</td>
+          <td>{{ r.message }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <div class="alert alert-secondary">No records yet. Run a calculator to see it here.</div>
+{% endif %}
+{% endblock %}

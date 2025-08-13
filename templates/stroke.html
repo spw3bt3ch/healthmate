@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Stroke Riskometer (Simplified)</h2>
+<form method="POST" class="row g-3">
+  <div class="col-md-4">
+    <label class="form-label">Age</label>
+    <input type="number" name="age" class="form-control" required>
+  </div>
+  <div class="col-md-8">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="high_bp" id="high_bp">
+      <label class="form-check-label" for="high_bp">High blood pressure</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="smoker" id="smoker">
+      <label class="form-check-label" for="smoker">Smoker</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="diabetes" id="diabetes">
+      <label class="form-check-label" for="diabetes">Diabetes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="high_chol" id="high_chol">
+      <label class="form-check-label" for="high_chol">High cholesterol</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="inactive" id="inactive">
+      <label class="form-check-label" for="inactive">Physically inactive</label>
+    </div>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Check Risk</button>
+  </div>
+</form>
+
+{% if result %}
+<div class="alert mt-4 {{ 'alert-success' if result.category=='Low risk' else ('alert-warning' if result.category=='Moderate risk' else 'alert-danger') }}">
+  <h4 class="alert-heading">Score: {{ result.value }} — {{ result.category }}</h4>
+  <p>{{ result.message }}</p>
+  <small class="text-muted">Note: This simplified score is for awareness only and not a medical diagnosis.</small>
+</div>
+{% endif %}
+{% endblock %}

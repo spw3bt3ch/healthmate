@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Waist-to-Hip Ratio (WHR)</h2>
+<form method="POST" class="row g-3">
+  <div class="col-md-4">
+    <label class="form-label">Waist (cm)</label>
+    <input type="number" name="waist" step="0.1" class="form-control" required>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Hip (cm)</label>
+    <input type="number" name="hip" step="0.1" class="form-control" required>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Gender</label>
+    <select name="gender" class="form-select">
+      <option value="M">Male</option>
+      <option value="F" selected>Female</option>
+    </select>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Calculate</button>
+  </div>
+</form>
+
+{% if result %}
+<div class="alert mt-4 {{ 'alert-success' if result.category=='Low risk' else ('alert-warning' if result.category=='Moderate risk' else 'alert-danger') }}">
+  <h4 class="alert-heading">Your WHR: {{ result.value }} — {{ result.category }}</h4>
+  <p>{{ result.message }}</p>
+</div>
+{% endif %}
+{% endblock %}
